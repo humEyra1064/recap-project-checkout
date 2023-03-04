@@ -7,17 +7,19 @@ import axios from "axios"
 
 
 const ProductList = () => {
+  const url = process.env.REACT_APP_API_URL;
   const [products, setProducts] = useState([])
+  
 
   const getProducts =async()=>{
     try {
-      const {data} = await axios("")
+      const {data} = await axios(url)
       setProducts(data)
     } catch (error) {
       console.log(error)
     }
   }
-  
+
 useEffect(() => {
   
 getProducts()
