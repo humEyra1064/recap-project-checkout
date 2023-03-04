@@ -19,8 +19,9 @@ function App() {
       
      
       <BrowserRouter>
+        <Navbar/>
       <Routes>  
-         <Navbar/>
+       
         <Route path="/" element={<Main/>}/>
         <Route path="/new-product" element={<NewProduct/>}/>
         <Route path="/product-list" element={ <ProductList/>}/>
