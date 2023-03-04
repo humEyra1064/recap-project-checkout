@@ -1,0 +1,35 @@
+
+import Main from "./pages/Main";
+import NewProduct from "./pages/NewProduct";
+import UpdateProduct from "./pages/UpdateProduct";
+import ProductList from "./pages/ProductList";
+import About from "./pages/About";
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+function App() {
+
+  
+
+  return (
+    <div className="bg-light app">
+   
+      
+     
+      
+     
+      <BrowserRouter>
+      <Routes>  
+         <Navbar/>
+        <Route path="/" element={<Main/>}/>
+        <Route path="/new-product" element={<NewProduct/>}/>
+        <Route path="/product-list" element={ <ProductList/>}/>
+        <Route path="/about" element={ <About/>}/>
+        <Route path="/update-product" element={<UpdateProduct/> }/>
+      </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
