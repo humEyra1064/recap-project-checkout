@@ -15,9 +15,9 @@ const ProductList = () => {
 
   const getProducts =async()=>{
     try {
-      const {data} = await axios("url")
-      setProducts(data)
       setLoading(false)
+      const {data} = await axios(url)
+      setProducts(data)
       setErrorState(false)
     } catch (error) {
       console.log(error)
@@ -40,10 +40,13 @@ getProducts()
       ) : products.length > 0 ? (
         <>
           <article id="product-panel" className="col-md-5">
-            <ProductCard />
+          { products.map(item=>{
+            return <ProductCard  key={item.id} item={item}/>
+          })}
+            
           </article>
           <article className="col-md-5 m-3">
-            <CardTotal />
+            <CardTotal products={products} />
           </article>
         </>
       ) : (
