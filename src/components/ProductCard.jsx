@@ -3,20 +3,40 @@ import React from "react";
 
 const ProductCard = ({item,getProducts}) => {
   const url = process.env.REACT_APP_API_URL;
-  const{price,name,image,amount,id,dampingRate}=item
-  const handleMinus =()=>{
-    
-  }
-  const handlePlus =()=>{
+  const { name, image, price, dampingRate, amount, id } = item;
 
-  }
-  const handleRemove =async()=>{
+  const handleMinus =async () => {
+    if (amount - 1) {
+      try {
+        await axios.put(`${url}/${id}`, {
+          ...item,
+          amount: amount - 1,
+        });
+      } catch (error) {}
+      getProducts();
+    }else{
+      handleRemove()
+    }
+  };
+
+  const handlePlus = async () => {
     try {
-  await axios.delete(`${url}/${id}`)
-} catch ( error) {
-  console.log(error)
-}getProducts()
-  }
+      await axios.put(`${url}/${id}`, {
+        ...item,
+        amount: amount + 1,
+      });
+    } catch (error) {}
+    getProducts();
+  };
+
+  const handleRemove = async () => {
+    try {
+      await axios.delete(`${url}/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+    getProducts();
+  };
 
   return (
     <div className="card shadow-lg mb-3">
